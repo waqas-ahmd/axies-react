@@ -1,0 +1,133 @@
+.page {
+  background-color: #1a202c;
+  padding: 30px;
+  color: #fff;
+}
+
+.flexRow1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.flexRow1 select {
+  box-shadow: border-box;
+  padding: 10px;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.flexRow1 select:hover {
+  background-color: #2c313d;
+}
+
+.flexRow1 option {
+  background-color: #1a202c;
+  padding: 4px 0px;
+}
+
+.flexRow2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.refreshButton {
+  background-color: #2d3748;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.refreshButton svg {
+  height: 24px;
+  width: 24px;
+}
+
+.totalNumber {
+  font-size: x-large;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.cardContainer1 {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.cardContainer2 {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@media all and (max-width: 900px) {
+  .cardsGrid {
+    grid-template-columns: auto;
+  }
+
+  .cardContainer1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cardContainer2 {
+    justify-content: center;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.footer button {
+  background-color: #2d3748;
+  border: 1px solid #fff0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 10px;
+}
+
+.footer button:hover {
+  border: 1px solid #fff;
+}
+
+.footer .prev svg {
+  transform: scaleX(-1);
+}
+
+.footer button svg {
+  height: 20px;
+  width: 20px;
+}
+
+.footer input {
+  background-color: transparent;
+  padding: 10px;
+  border: 1px solid #aaa;
+  width: 80px;
+  margin: 0px 10px;
+  color: #fff;
+  border-radius: 5px;
+}

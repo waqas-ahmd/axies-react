@@ -1,0 +1,224 @@
+.card {
+  background-color: #282b39;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  width: 370px;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 10px #000;
+  border: 1px solid #fff;
+  transform: scale(1.02);
+}
+
+.card .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card .header .left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card .header .left h4 {
+  margin-left: 5px;
+}
+
+.card .header .right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: small;
+}
+
+.mainIcon {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.mainIcon svg {
+  height: 20px;
+  width: 20px;
+}
+
+.card .subHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card .subHeader .left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #3a3f50;
+  border-radius: 4px;
+  height: 22px;
+  width: fit-content;
+  padding: 0px 10px 0px 5px;
+}
+
+.card .subHeader .left .icon {
+  margin: 0px 5px;
+}
+.card .subHeader .left .number {
+  font-weight: bold;
+}
+
+.card .subHeader .left .icon svg {
+  height: 12px;
+}
+
+.card .subHeader .right {
+  display: flex;
+  flex-direction: row;
+}
+
+.card .subHeader .right .icon {
+  height: 20px;
+  width: 24px;
+  margin: 0px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.card .subHeader .right .icon svg {
+  height: 90%;
+}
+
+.card .central {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card .central .image {
+  height: 125px;
+}
+
+.card .central .image img {
+  height: 100%;
+}
+
+.card .central .bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .central .bars .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card .central .bars .row .value {
+  font-size: small;
+}
+
+.card .central .bars .row .icon {
+  height: 23px;
+}
+
+.card .central .bars .row .icon svg {
+  height: 100%;
+}
+
+.card .central .bars .row .outerBar {
+  height: 8px;
+  width: 120px;
+  background-color: #4b4d59;
+  margin-left: 6px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.card .central .bars .row .outerBar .innerBar {
+  height: 100%;
+  border-radius: 100px;
+}
+
+.card .footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.card .footer .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.card .footer .left .usd {
+  font-size: smaller;
+  color: #888;
+}
+
+.card .footer .left .etherium {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.card .footer .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+
+.card .footer .right .values {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: small;
+}
+
+.card .footer .right .values .eth {
+  font-weight: bold;
+}
+
+.card .footer .right .outerBar {
+  width: 100%;
+  margin-top: 7px;
+  height: 5px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #4b4d59;
+  overflow: hidden;
+}
+
+.card .footer .right .innerBar {
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+}
