@@ -131,3 +131,9 @@
   color: #fff;
   border-radius: 5px;
 }
+
+.error {
+  color: rgb(231, 82, 82);
+  font-weight: bold;
+  font-size: x-large;
+}

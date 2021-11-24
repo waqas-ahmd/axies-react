@@ -104,19 +104,23 @@ const gqlQuery = `query GetAxieLatest(
       `;
 
 export const fetchAxies = async (page, size, sort) => {
-  const { data } = await axios.post(
-    "https://graphql-gateway.axieinfinity.com/graphql",
-    {
-      operationName: "GetAxieLatest",
-      variables: {
-        from: (page - 1) * size,
-        size: size,
-        sort,
-        auctionType: "Sale",
-        criteria: {},
-      },
-      query: gqlQuery,
-    }
-  );
-  return data.data.axies;
+  try {
+    const { data } = await axios.post(
+      "https://graphql-gateway.axieinfinity.com/graphql",
+      {
+        operationName: "GetAxieLatest",
+        variables: {
+          from: (page - 1) * size,
+          size: size,
+          sort,
+          auctionType: "Sale",
+          criteria: {},
+        },
+        query: gqlQuery,
+      }
+    );
+    return { data: data.data.axies, error: false };
+  } catch (error) {
+    return { data: [], error: true };
+  }
 };

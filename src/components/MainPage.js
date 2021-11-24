@@ -15,6 +15,7 @@ const MainPage = () => {
   const [totalAxies, setTotalAxies] = useState("");
   const [dataPerPage, setDataPerPage] = useState(30);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [sorting, setSorting] = useState("PriceAsc");
   const [currentPage, setCurrentPage] = useState(query.get("page") || 1);
   const [axies, setAxies] = useState([]);
@@ -24,13 +25,32 @@ const MainPage = () => {
   useEffect(() => {
     (async () => {
       setAxies([]);
+      setError(false);
       setLoading(true);
-      const data = await fetchAxies(currentPage, dataPerPage, sorting);
+      let { data, error } = await fetchAxies(currentPage, dataPerPage, sorting);
+      if (error) {
+        setError(true);
+      } else {
+        setAxies(data.results);
+      }
       setLoading(false);
       setTotalAxies(data.total);
-      setAxies(data.results);
     })();
   }, [dataPerPage, currentPage, sorting]);
+
+  const refetch = async () => {
+    setAxies([]);
+    setError(false);
+    setLoading(true);
+    let { data, error } = await fetchAxies(currentPage, dataPerPage, sorting);
+    if (error) {
+      setError(true);
+    } else {
+      setAxies(data.results);
+    }
+    setLoading(false);
+    setTotalAxies(data.total);
+  };
 
   useEffect(() => {
     currentPage === 1 ? navigate("/") : navigate(`/?page=${currentPage}`);
@@ -62,7 +82,7 @@ const MainPage = () => {
 
       <div className={styles.flexRow1}>
         <div className={styles.flexRow2}>
-          <div className={styles.refreshButton}>
+          <div onClick={refetch} className={styles.refreshButton}>
             <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
               <g fill="#fff">
                 <path d="M10.319,4.936a7.239,7.239,0,0,1,7.1,2.252,1.25,1.25,0,1,0,1.872-1.657A9.737,9.737,0,0,0,9.743,2.5,10.269,10.269,0,0,0,2.378,9.61a.249.249,0,0,1-.271.178l-1.033-.13A.491.491,0,0,0,.6,9.877a.5.5,0,0,0-.019.526l2.476,4.342a.5.5,0,0,0,.373.248.43.43,0,0,0,.062,0,.5.5,0,0,0,.359-.152l3.477-3.593a.5.5,0,0,0-.3-.844L5.15,10.172a.25.25,0,0,1-.2-.333A7.7,7.7,0,0,1,10.319,4.936Z"></path>
@@ -84,6 +104,10 @@ const MainPage = () => {
           <option>Complete View</option>
         </select>
       </div>
+
+      {error ? (
+        <div className={styles.error}>An Error Occured, Please Refresh</div>
+      ) : null}
 
       {loading ? (
         <div className={styles.loader}>
