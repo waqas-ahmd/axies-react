@@ -103,7 +103,19 @@ const gqlQuery = `query GetAxieLatest(
       }
       `;
 
-export const fetchAxies = async (page, size, sort) => {
+export const fetchAxies = async (
+  page,
+  size,
+  sort,
+  classes,
+  numMystic,
+  pureness,
+  hp,
+  skill,
+  speed,
+  morale,
+  breedCount
+) => {
   try {
     const { data } = await axios.post(
       "https://graphql-gateway.axieinfinity.com/graphql",
@@ -114,7 +126,16 @@ export const fetchAxies = async (page, size, sort) => {
           size: size,
           sort,
           auctionType: "Sale",
-          criteria: {},
+          criteria: {
+            classes,
+            numMystic,
+            pureness,
+            hp: [hp, 60],
+            skill: [skill, 60],
+            speed: [speed, 60],
+            morale: [morale, 60],
+            breedCount,
+          },
         },
         query: gqlQuery,
       }

@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  background-color: #1a202c;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  overflow-y: hidden;
+}
+.pageContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100vh;
+}
+.filtersContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.pageScroller {
+  flex: 1;
+  flex-grow: 1;
+  overflow: auto;
+}

@@ -2193,6 +2193,11 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
+agp-npm@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/agp-npm/-/agp-npm-1.0.9.tgz#e09c7944c8db045aee5354705cad942d435abe51"
+  integrity sha512-yr5kzVz/qNptPj8V+FtFcc757y2ofDA8P4KXePnE3hAcIwlKB9Oi2wfzSq7PJ9Qpw4pAI0FssAtaYafE2zZ9Pg==
+
 ajv-errors@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"

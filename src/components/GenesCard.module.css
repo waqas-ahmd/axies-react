@@ -1,0 +1,32 @@
+.card {
+  padding: 12px 10px;
+  background-color: #1f2024;
+  position: absolute;
+  width: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.icon {
+  height: 20px;
+  width: 24px;
+  margin: 2px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.icon svg {
+  height: 80%;
+}
+
+.card td {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 50px;
+}

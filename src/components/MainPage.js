@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { fetchAxies } from "../api";
+import { FiltersContext } from "../filtersContext";
 import Card from "./Card";
 import Loader from "./Loader";
 import * as styles from "./MainPage.module.css";
@@ -22,27 +23,67 @@ const MainPage = () => {
   const [pageInputValue, setPageInputValue] = useState(1);
   const navigate = useNavigate();
 
+  const { classes, numMystic, pureness, hp, skill, speed, morale, breedCount } =
+    useContext(FiltersContext);
+
   useEffect(() => {
     (async () => {
       setAxies([]);
       setError(false);
       setLoading(true);
-      let { data, error } = await fetchAxies(currentPage, dataPerPage, sorting);
+      let { data, error } = await fetchAxies(
+        currentPage,
+        dataPerPage,
+        sorting,
+        classes,
+        numMystic,
+        pureness,
+        hp,
+        skill,
+        speed,
+        morale,
+        breedCount
+      );
       if (error) {
         setError(true);
       } else {
+        console.log(data.results);
         setAxies(data.results);
       }
       setLoading(false);
       setTotalAxies(data.total);
     })();
-  }, [dataPerPage, currentPage, sorting]);
+  }, [
+    dataPerPage,
+    currentPage,
+    sorting,
+    classes,
+    numMystic,
+    pureness,
+    hp,
+    skill,
+    speed,
+    morale,
+    breedCount,
+  ]);
 
   const refetch = async () => {
     setAxies([]);
     setError(false);
     setLoading(true);
-    let { data, error } = await fetchAxies(currentPage, dataPerPage, sorting);
+    let { data, error } = await fetchAxies(
+      currentPage,
+      dataPerPage,
+      sorting,
+      classes,
+      numMystic,
+      pureness,
+      hp,
+      skill,
+      speed,
+      morale,
+      breedCount
+    );
     if (error) {
       setError(true);
     } else {
@@ -114,6 +155,7 @@ const MainPage = () => {
           <Loader />
         </div>
       ) : null}
+
       <div className={styles.cardsGrid}>
         {axies.map((axie, index) => (
           <div
