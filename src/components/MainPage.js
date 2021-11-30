@@ -98,12 +98,7 @@ const MainPage = () => {
 
       <div className={styles.cardsGrid}>
         {filteredAxies.map((axie, index) => (
-          <div
-            key={index}
-            className={
-              index % 2 === 0 ? styles.cardContainer1 : styles.cardContainer2
-            }
-          >
+          <div key={index} className={styles.cardContainer}>
             {view === 0 && <BasicView data={axie} />}
             {view === 1 && <ArenaView data={axie} />}
             {view === 2 && <BreedView data={axie} />}

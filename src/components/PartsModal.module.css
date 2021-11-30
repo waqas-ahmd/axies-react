@@ -29,25 +29,12 @@
 .body .grid {
   padding-top: 10px;
   width: fit-content;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1200px) {
-  .body .grid {
-    grid-template-columns: auto auto auto;
-  }
-}
-@media screen and (max-width: 900px) {
-  .body .grid {
-    grid-template-columns: auto auto;
-  }
-}
-@media screen and (max-width: 600px) {
-  .body .grid {
-    grid-template-columns: auto;
-  }
-}
 .header,
 .footer {
   padding: 15px;
