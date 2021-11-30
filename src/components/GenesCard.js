@@ -1,25 +1,17 @@
 import React from "react";
 import { COLORS } from "../assets/colors";
-import {
-  backIcon,
-  earsIcon,
-  eyesIcon,
-  hornIcon,
-  mouthIcon,
-  tailIcon,
-} from "./geneIcons";
+import icons from "./geneIcons";
 import * as styles from "./GenesCard.module.css";
 
 const GenesCard = ({ genes }) => {
   const { eyes, ears, mouth, horn, back, tail } = genes;
-  console.log(genes);
   const getIcon = (index) => {
-    if (index === 0) return eyesIcon;
-    if (index === 1) return earsIcon;
-    if (index === 2) return mouthIcon;
-    if (index === 3) return hornIcon;
-    if (index === 4) return backIcon;
-    if (index === 5) return tailIcon;
+    if (index === 0) return icons.eyesIcon;
+    if (index === 1) return icons.earsIcon;
+    if (index === 2) return icons.mouthIcon;
+    if (index === 3) return icons.hornIcon;
+    if (index === 4) return icons.backIcon;
+    if (index === 5) return icons.tailIcon;
   };
   return (
     <div className={styles.card}>

@@ -1,0 +1,26 @@
+.button {
+  height: 24px;
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 100px;
+  padding: 0px 2px;
+  cursor: pointer;
+}
+
+.knobOn,
+.knobOff {
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: rgb(252, 73, 41);
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.knobOn {
+  background-color: rgb(64, 133, 224);
+}

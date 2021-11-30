@@ -4,11 +4,14 @@
   display: flex;
   flex-direction: column;
   color: #ddd;
+  border-right: 1px solid #888;
+  min-height: 100vh;
 }
 
 .section h4 {
-  color: #999;
+  color: #718088;
   margin: 10px 0px;
+  font-size: small;
 }
 
 .section input[type="range"] {
@@ -20,8 +23,6 @@
 }
 
 .section input[type="range"]::-moz-range-progress {
-  /* -webkit-appearance: none; */
-  /* appearance: none; */
   background-color: rgb(31, 174, 209);
 }
 .section input[type="range"]::-webkit-slider-thumb {
@@ -54,6 +55,13 @@
   display: flex;
   flex-direction: row;
   margin: 10px 0px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.tabs .selectedTab {
+  background-color: #011532;
+  border-color: #3086fd;
 }
 
 .tabs div {
@@ -118,4 +126,87 @@
   padding-left: 5px;
   height: 24px;
   width: 24px;
+}
+
+.infoBox {
+  display: flex;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #2d3748;
+  flex-direction: row;
+  align-items: center;
+  width: 240px;
+  border-radius: 10px;
+}
+
+.infoBox div:first-child {
+  padding-right: 10px;
+}
+
+.infoBox p {
+  font-size: small;
+}
+
+.infoBox p:first-child {
+  padding-bottom: 10px;
+}
+
+.numInput {
+  background-color: transparent;
+  padding: 5px;
+  color: white;
+  border-radius: 3px;
+  border: 1px solid #888;
+}
+
+.searchBar {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid rgb(180, 180, 180);
+  outline: none;
+  background-color: #0e1117;
+  border-radius: 6px;
+  color: white;
+  transition: all 0.2s ease;
+  outline: 1.6px solid #fff0;
+}
+
+.searchBar:hover {
+  outline: 1.6px solid white;
+}
+
+.searchBar::placeholder {
+  font-weight: bolder;
+}
+
+.genesButtonBlue,
+.genesButtonRed {
+  background-color: #319795;
+  border: none;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: small;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 3px 7px;
+  font-weight: 500;
+  user-select: none;
+  cursor: pointer;
+}
+
+.genesButtonRed {
+  background-color: #c1170b;
+  margin-right: 0;
+}
+
+.blocker {
+  background-color: #0008;
+  position: absolute;
+  /* height: 100%; */
+  left: -10px;
+  right: -10px;
+  border-radius: 5px;
+  top: 2px;
+  bottom: -7px;
 }

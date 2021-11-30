@@ -106,6 +106,8 @@ const gqlQuery = `query GetAxieLatest(
 export const fetchAxies = async (
   page,
   size,
+  pagesAtOnce,
+  advancedEnabled,
   sort,
   classes,
   numMystic,
@@ -114,7 +116,8 @@ export const fetchAxies = async (
   skill,
   speed,
   morale,
-  breedCount
+  breedCount,
+  parts
 ) => {
   try {
     const { data } = await axios.post(
@@ -122,8 +125,8 @@ export const fetchAxies = async (
       {
         operationName: "GetAxieLatest",
         variables: {
-          from: (page - 1) * size,
-          size: size,
+          from: (page - 1) * (size * (advancedEnabled ? pagesAtOnce : 1)),
+          size: size * (advancedEnabled ? pagesAtOnce : 1),
           sort,
           auctionType: "Sale",
           criteria: {
@@ -135,6 +138,7 @@ export const fetchAxies = async (
             speed: [speed, 60],
             morale: [morale, 60],
             breedCount,
+            parts,
           },
         },
         query: gqlQuery,

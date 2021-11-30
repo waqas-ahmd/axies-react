@@ -1,96 +1,36 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
-import { fetchAxies } from "../api";
+import { useNavigate } from "react-router";
 import { FiltersContext } from "../filtersContext";
-import Card from "./Card";
+import ArenaView from "./ArenaView";
+import BasicView from "./BasicView";
+import BreedProView from "./BreedProView";
+import BreedView from "./BreedView";
+import CompleteView from "./CompleteView";
 import Loader from "./Loader";
 import * as styles from "./MainPage.module.css";
 
-function useQuery() {
-  const { search } = useLocation();
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
-
 const MainPage = () => {
-  let query = useQuery();
-  const [totalAxies, setTotalAxies] = useState("");
-  const [dataPerPage, setDataPerPage] = useState(30);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [sorting, setSorting] = useState("PriceAsc");
-  const [currentPage, setCurrentPage] = useState(query.get("page") || 1);
-  const [axies, setAxies] = useState([]);
   const [pageInputValue, setPageInputValue] = useState(1);
+  const [view, setView] = useState(0);
   const navigate = useNavigate();
 
-  const { classes, numMystic, pureness, hp, skill, speed, morale, breedCount } =
-    useContext(FiltersContext);
-
-  useEffect(() => {
-    (async () => {
-      setAxies([]);
-      setError(false);
-      setLoading(true);
-      let { data, error } = await fetchAxies(
-        currentPage,
-        dataPerPage,
-        sorting,
-        classes,
-        numMystic,
-        pureness,
-        hp,
-        skill,
-        speed,
-        morale,
-        breedCount
-      );
-      if (error) {
-        setError(true);
-      } else {
-        console.log(data.results);
-        setAxies(data.results);
-      }
-      setLoading(false);
-      setTotalAxies(data.total);
-    })();
-  }, [
+  const {
+    loading,
+    error,
+    totalAxies,
     dataPerPage,
+    setDataPerPage,
+    setSorting,
     currentPage,
-    sorting,
-    classes,
-    numMystic,
-    pureness,
-    hp,
-    skill,
-    speed,
-    morale,
-    breedCount,
-  ]);
+    setCurrentPage,
+    getAxies,
+    filteredAxies,
+    advancedEnabled,
+    pagesAtOnce,
+  } = useContext(FiltersContext);
 
   const refetch = async () => {
-    setAxies([]);
-    setError(false);
-    setLoading(true);
-    let { data, error } = await fetchAxies(
-      currentPage,
-      dataPerPage,
-      sorting,
-      classes,
-      numMystic,
-      pureness,
-      hp,
-      skill,
-      speed,
-      morale,
-      breedCount
-    );
-    if (error) {
-      setError(true);
-    } else {
-      setAxies(data.results);
-    }
-    setLoading(false);
-    setTotalAxies(data.total);
+    await getAxies();
   };
 
   useEffect(() => {
@@ -137,12 +77,12 @@ const MainPage = () => {
           </div>
         </div>
 
-        <select>
-          <option>Basic View</option>
-          <option>Arena View</option>
-          <option>Breed View</option>
-          <option>Breed Pro View</option>
-          <option>Complete View</option>
+        <select onChange={(e) => setView(+e.target.value)}>
+          <option value={0}>Basic View</option>
+          <option value={1}>Arena View</option>
+          <option value={2}>Breed View</option>
+          <option value={3}>Breed Pro View</option>
+          <option value={4}>Complete View</option>
         </select>
       </div>
 
@@ -157,14 +97,18 @@ const MainPage = () => {
       ) : null}
 
       <div className={styles.cardsGrid}>
-        {axies.map((axie, index) => (
+        {filteredAxies.map((axie, index) => (
           <div
             key={index}
             className={
               index % 2 === 0 ? styles.cardContainer1 : styles.cardContainer2
             }
           >
-            <Card data={axie} />
+            {view === 0 && <BasicView data={axie} />}
+            {view === 1 && <ArenaView data={axie} />}
+            {view === 2 && <BreedView data={axie} />}
+            {view === 3 && <BreedProView data={axie} />}
+            {view === 4 && <CompleteView data={axie} />}
           </div>
         ))}
       </div>
@@ -196,10 +140,17 @@ const MainPage = () => {
           <input
             onChange={(e) => setPageInputValue(e.target.value)}
             value={pageInputValue}
-            max={Math.round(totalAxies / dataPerPage)}
+            max={Math.round(
+              totalAxies / dataPerPage / (advancedEnabled ? pagesAtOnce : 1)
+            )}
           />
         </form>
-        <div>of {Math.round(totalAxies / dataPerPage)}</div>
+        <div>
+          of{" "}
+          {Math.round(
+            totalAxies / dataPerPage / (advancedEnabled ? pagesAtOnce : 1)
+          )}
+        </div>
 
         <button
           onClick={() => setCurrentPage((prev) => prev + 1)}

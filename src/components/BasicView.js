@@ -1,20 +1,12 @@
 import React, { useState } from "react";
-import * as styles from "./Card.module.css";
+import * as styles from "./BasicView.module.css";
 import { COLORS } from "../assets/colors";
 import { iconPath } from "../assets/paths";
 import ArenaCard from "./ArenaCard";
-import { AxieGene } from "agp-npm/dist/axie-gene";
-import {
-  backIcon,
-  earsIcon,
-  eyesIcon,
-  hornIcon,
-  mouthIcon,
-  tailIcon,
-} from "./geneIcons";
+import icons from "./geneIcons";
 import GenesCard from "./GenesCard";
 
-const Card = ({ data }) => {
+const BasicView = ({ data }) => {
   const [showArenaCard, setShowArenaCard] = useState(false);
   const [showGenesCard, setShowGenesCard] = useState(false);
   const ethFactor = 1000000000000000000;
@@ -37,8 +29,7 @@ const Card = ({ data }) => {
       });
     }
   }
-  // console.log(data.gene);
-  const genes = new AxieGene(data.genes);
+
   return (
     <a
       href={`https://marketplace.axieinfinity.com/axie/${data.id}?referrer=axielegend.com`}
@@ -58,7 +49,7 @@ const Card = ({ data }) => {
           </div>
           <div className={styles.right}>
             <div>{data.breedCount} Breeds</div>
-            {/* <div>95% Purity</div> */}
+            <div>{data.purity}% Purity</div>
           </div>
         </div>
 
@@ -81,10 +72,7 @@ const Card = ({ data }) => {
               </svg>
             </div>
             <div style={{ color: "#ffd110" }} className={styles.number}>
-              {data.parts.reduce(
-                (a, b) => a + b.abilities.reduce((x, y) => x + y.energy, 0),
-                0
-              )}
+              {data.energy}
             </div>
             <div className={styles.icon}>
               <svg viewBox="0 0 500 540" focusable="false">
@@ -95,10 +83,7 @@ const Card = ({ data }) => {
               </svg>
             </div>
             <div style={{ color: "#BA3650" }} className={styles.number}>
-              {data.parts.reduce(
-                (a, b) => a + b.abilities.reduce((x, y) => x + y.attack, 0),
-                0
-              )}
+              {data.attack}
             </div>
             <div className={styles.icon}>
               <svg viewBox="0 0 50 59" focusable="false">
@@ -109,10 +94,7 @@ const Card = ({ data }) => {
               </svg>
             </div>
             <div style={{ color: "#319b6a" }} className={styles.number}>
-              {data.parts.reduce(
-                (a, b) => a + b.abilities.reduce((x, y) => x + y.defense, 0),
-                0
-              )}
+              {data.defense}
             </div>
           </div>
           <div
@@ -131,7 +113,7 @@ const Card = ({ data }) => {
               }}
               className={styles.icon}
             >
-              {eyesIcon}
+              {icons.eyesIcon}
             </div>
             <div
               style={{
@@ -144,7 +126,7 @@ const Card = ({ data }) => {
               }}
               className={styles.icon}
             >
-              {earsIcon}
+              {icons.earsIcon}
             </div>
             <div
               style={{
@@ -157,7 +139,7 @@ const Card = ({ data }) => {
               }}
               className={styles.icon}
             >
-              {mouthIcon}
+              {icons.mouthIcon}
             </div>
             <div
               style={{
@@ -170,7 +152,7 @@ const Card = ({ data }) => {
               }}
               className={styles.icon}
             >
-              {hornIcon}
+              {icons.hornIcon}
             </div>
             <div
               style={{
@@ -183,7 +165,7 @@ const Card = ({ data }) => {
               }}
               className={styles.icon}
             >
-              {backIcon}
+              {icons.backIcon}
             </div>
             <div
               style={{
@@ -196,12 +178,16 @@ const Card = ({ data }) => {
               }}
               className={styles.icon}
             >
-              {tailIcon}
+              {icons.tailIcon}
             </div>
           </div>
         </div>
 
-        {showGenesCard ? <GenesCard genes={genes} /> : null}
+        {showGenesCard ? (
+          <div className={styles.genesCardContainer}>
+            <GenesCard genes={data.genes} />
+          </div>
+        ) : null}
 
         {showArenaCard ? (
           <div className={styles.arenaCards}>
@@ -364,4 +350,4 @@ const Card = ({ data }) => {
   );
 };
 
-export default Card;
+export default BasicView;
