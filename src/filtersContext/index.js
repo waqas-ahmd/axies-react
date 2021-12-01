@@ -154,7 +154,7 @@ export const FiltersProvider = ({ children }) => {
       genesIncluded.map((gene) => gene.partId)
     );
     if (error) {
-      setError(true);
+      setError("No Axies Found");
     } else {
       setAxies(formatAxies(data.results));
     }
@@ -163,7 +163,7 @@ export const FiltersProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    setBreedCount([0, 1, 2, 3, 4, 5, 6, 7].slice(0, maxBreed));
+    setBreedCount([0, 1, 2, 3, 4, 5, 6, 7].slice(0, maxBreed + 1));
   }, [maxBreed]);
 
   useEffect(() => {
@@ -171,7 +171,7 @@ export const FiltersProvider = ({ children }) => {
   }, [minMystic]);
 
   useEffect(() => {
-    setPureness([1, 2, 3, 4, 5, 6].slice(minPureness, 6));
+    setPureness([1, 2, 3, 4, 5, 6].slice(minPureness - 1, 6));
   }, [minPureness]);
 
   useEffect(() => {
@@ -196,7 +196,7 @@ export const FiltersProvider = ({ children }) => {
         genesIncluded.map((gene) => gene.partId)
       );
       if (error) {
-        setError(true);
+        setError("No Axies Found");
       } else {
         setAxies(formatAxies(data.results));
       }
@@ -220,6 +220,7 @@ export const FiltersProvider = ({ children }) => {
   ]);
 
   useEffect(() => {
+    setError(false);
     if (!advancedEnabled) setFilteredAxies(axies);
     else {
       const unfilteredAxies = [...axies];
@@ -258,6 +259,9 @@ export const FiltersProvider = ({ children }) => {
         return false;
       });
       const purityFiltered = r2GeneFilter.filter((a) => a.purity >= minPurity);
+      if (purityFiltered.length === 0) {
+        setError("No Matching Axies on this page");
+      }
       setFilteredAxies(purityFiltered);
     }
   }, [

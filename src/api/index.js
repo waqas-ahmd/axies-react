@@ -32,7 +32,6 @@ const gqlQuery = `query GetAxieLatest(
         name
         genes
         owner
-        class
         stage
         title
         breedCount
@@ -133,11 +132,11 @@ export const fetchAxies = async (
             classes,
             numMystic,
             pureness,
-            hp: [hp, 60],
-            skill: [skill, 60],
-            speed: [speed, 60],
-            morale: [morale, 60],
-            breedCount,
+            hp: [hp, 61],
+            skill: [skill, 61],
+            speed: [speed, 61],
+            morale: [morale, 61],
+            breedCount: [0, 1, 2, 3, 4, 5, 6, 7],
             parts,
           },
         },

@@ -32,7 +32,9 @@ const BasicView = ({ data }) => {
 
   return (
     <a
-      href={`https://marketplace.axieinfinity.com/axie/${data.id}?referrer=axielegend.com`}
+      href={`https://marketplace.axieinfinity.com/axie/${data.id}`}
+      target="_blank"
+      rel="noreferrer"
     >
       <div className={styles.card}>
         <div className={styles.header}>

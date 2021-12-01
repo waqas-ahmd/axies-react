@@ -86,9 +86,7 @@ const MainPage = () => {
         </select>
       </div>
 
-      {error ? (
-        <div className={styles.error}>An Error Occured, Please Refresh</div>
-      ) : null}
+      {error ? <div className={styles.error}>{error}</div> : null}
 
       {loading ? (
         <div className={styles.loader}>
