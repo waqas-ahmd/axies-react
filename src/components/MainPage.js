@@ -131,7 +131,7 @@ const MainPage = () => {
           }}
         >
           <input
-            onChange={(e) => setPageInputValue(e.target.value)}
+            onChange={(e) => setPageInputValue(+e.target.value)}
             value={pageInputValue}
             max={Math.round(
               totalAxies / dataPerPage / (advancedEnabled ? pagesAtOnce : 1)

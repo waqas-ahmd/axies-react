@@ -32,7 +32,7 @@ export const FiltersProvider = ({ children }) => {
   const [totalAxies, setTotalAxies] = useState("");
   const [dataPerPage, setDataPerPage] = useState(30);
   const [sorting, setSorting] = useState("PriceAsc");
-  const [currentPage, setCurrentPage] = useState(query.get("page") || 1);
+  const [currentPage, setCurrentPage] = useState(+query.get("page") || 1);
   const [filteredAxies, setFilteredAxies] = useState([]);
   // Advanced Filters
   const [advancedEnabled, setAdvancedEnabled] = useState(false);
@@ -260,11 +260,12 @@ export const FiltersProvider = ({ children }) => {
       });
       const purityFiltered = r2GeneFilter.filter((a) => a.purity >= minPurity);
       if (purityFiltered.length === 0) {
-        setError("No Matching Axies on this page");
+        if (!loading) setError("No Matching Axies on this page");
       }
       setFilteredAxies(purityFiltered);
     }
   }, [
+    loading,
     advancedEnabled,
     axies,
     genesExcluded,
