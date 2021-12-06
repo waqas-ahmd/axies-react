@@ -136,7 +136,7 @@ export const fetchAxies = async (
             skill: [skill, 61],
             speed: [speed, 61],
             morale: [morale, 61],
-            breedCount: [0, 1, 2, 3, 4, 5, 6, 7],
+            breedCount: breedCount,
             parts,
           },
         },
