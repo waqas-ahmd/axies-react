@@ -61,6 +61,8 @@ const FilterSection = () => {
   const [filterSection, setFilterSection] = useState(0);
   const [modal, setModal] = useState(false);
   const [modalFlag, setModalFlag] = useState("included");
+  const [breedSlider, setBreedSlider] = useState(7);
+  const [mysticSlider, setMysticSlider] = useState(0);
 
   const stats = {
     Heart: [hp, setHp],
@@ -223,9 +225,10 @@ const FilterSection = () => {
         </div>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <input
-            onChange={(e) => setMaxBreed(+e.target.value)}
+            onMouseUp={(e) => setMaxBreed(+e.target.value)}
             type="range"
-            value={maxBreed}
+            onChange={(e) => setBreedSlider(+e.target.value)}
+            value={breedSlider}
             min={0}
             max={7}
             style={{ width: "100%" }}
@@ -249,9 +252,10 @@ const FilterSection = () => {
         </div>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <input
-            onChange={(e) => setMinMystic(+e.target.value)}
+            onMouseUp={(e) => setMinMystic(+e.target.value)}
+            onChange={(e) => setMysticSlider(+e.target.value)}
             type="range"
-            value={minMystic}
+            value={mysticSlider}
             min={0}
             max={6}
             style={{ width: "100%" }}

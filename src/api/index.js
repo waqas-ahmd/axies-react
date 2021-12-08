@@ -119,6 +119,7 @@ export const fetchAxies = async (
   parts
 ) => {
   try {
+    console.log(breedCount);
     const { data } = await axios.post(
       "https://graphql-gateway.axieinfinity.com/graphql",
       {
