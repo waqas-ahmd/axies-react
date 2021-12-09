@@ -295,58 +295,73 @@ const BasicView = ({ data }) => {
           </div>
         </div>
 
-        <div className={styles.footer}>
-          <div className={styles.left}>
-            <div className={styles.usd}>${data.auction.currentPriceUSD}</div>
+        {data.auction ? (
+          <div className={styles.footer}>
+            <div className={styles.left}>
+              <div className={styles.usd}>${data.auction.currentPriceUSD}</div>
 
-            {(Number(data.auction.currentPrice) / ethFactor).toFixed(3) >
-            9999 ? (
-              <div className={styles.etherium}>Ξ 9999...</div>
-            ) : (
-              <div className={styles.etherium}>
-                Ξ {(Number(data.auction.currentPrice) / ethFactor).toFixed(3)}
-              </div>
-            )}
-          </div>
+              {(Number(data.auction.currentPrice) / ethFactor).toFixed(3) >
+              9999 ? (
+                <div className={styles.etherium}>Ξ 9999...</div>
+              ) : (
+                <div className={styles.etherium}>
+                  Ξ {(Number(data.auction.currentPrice) / ethFactor).toFixed(3)}
+                </div>
+              )}
+            </div>
 
-          <div className={styles.right}>
-            {data.auction.timeLeft === "0" ? (
-              <></>
-            ) : (
-              <>
-                <div className={styles.values}>
-                  <div className={styles.eth}>
-                    Ξ{" "}
-                    {(Number(data.auction.startingPrice) / ethFactor).toFixed(
-                      3
-                    )}
+            <div className={styles.right}>
+              {data.auction.timeLeft === "0" ? (
+                <></>
+              ) : (
+                <>
+                  <div className={styles.values}>
+                    <div className={styles.eth}>
+                      Ξ{" "}
+                      {(Number(data.auction.startingPrice) / ethFactor).toFixed(
+                        3
+                      )}
+                    </div>
+                    <div className={styles.time}>
+                      in {getTime(data.auction.timeLeft)}
+                    </div>
+                    <div className={styles.eth}>
+                      Ξ{" "}
+                      {(Number(data.auction.endingPrice) / ethFactor).toFixed(
+                        3
+                      )}
+                    </div>
                   </div>
-                  <div className={styles.time}>
-                    in {getTime(data.auction.timeLeft)}
+                  <div className={styles.outerBar}>
+                    <div
+                      style={{
+                        width: `${
+                          100 -
+                          (Number(data.auction.timeLeft) /
+                            (Number(data.auction.endingTimestamp) -
+                              Number(data.auction.startingTimestamp))) *
+                            100
+                        }%`,
+                      }}
+                      className={styles.innerBar}
+                    ></div>
                   </div>
-                  <div className={styles.eth}>
-                    Ξ{" "}
-                    {(Number(data.auction.endingPrice) / ethFactor).toFixed(3)}
-                  </div>
-                </div>
-                <div className={styles.outerBar}>
-                  <div
-                    style={{
-                      width: `${
-                        100 -
-                        (Number(data.auction.timeLeft) /
-                          (Number(data.auction.endingTimestamp) -
-                            Number(data.auction.startingTimestamp))) *
-                          100
-                      }%`,
-                    }}
-                    className={styles.innerBar}
-                  ></div>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div
+            style={{
+              fontSize: 20,
+              textAlign: "center",
+              fontWeight: 500,
+              padding: "14px 0px",
+            }}
+          >
+            Not For Sale
+          </div>
+        )}
       </div>
     </a>
   );

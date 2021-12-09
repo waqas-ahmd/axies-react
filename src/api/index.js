@@ -116,10 +116,10 @@ export const fetchAxies = async (
   speed,
   morale,
   breedCount,
-  parts
+  parts,
+  ronin
 ) => {
   try {
-    console.log(breedCount);
     const { data } = await axios.post(
       "https://graphql-gateway.axieinfinity.com/graphql",
       {
@@ -128,7 +128,8 @@ export const fetchAxies = async (
           from: (page - 1) * (size * (advancedEnabled ? pagesAtOnce : 1)),
           size: size * (advancedEnabled ? pagesAtOnce : 1),
           sort,
-          auctionType: "Sale",
+          auctionType: ronin ? "All" : "Sale",
+          owner: ronin,
           criteria: {
             classes,
             numMystic,

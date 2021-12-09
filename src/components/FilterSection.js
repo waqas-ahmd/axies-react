@@ -56,6 +56,9 @@ const FilterSection = () => {
     setMinDefense,
     minPurity,
     setMinPurity,
+    setRonin,
+    roninValue,
+    setRoninValue,
   } = useContext(FiltersContext);
 
   const [filterSection, setFilterSection] = useState(0);
@@ -69,6 +72,15 @@ const FilterSection = () => {
     Lightning: [speed, setSpeed],
     Star: [skill, setSkill],
     Fire: [morale, setMorale],
+  };
+
+  const updateRonin = (e) => {
+    setRoninValue(e.target.value);
+    if (e.target.value.length === 42) {
+      setRonin(e.target.value);
+    } else {
+      setRonin(null);
+    }
   };
 
   const addGeneToGroup = (gene) => {
@@ -611,34 +623,47 @@ const FilterSection = () => {
     </>
   );
 
-  const roninFilters = () => (
-    <>
-      <div className={styles.infoBox}>
-        <div>
-          <svg height={16} width={16} viewBox="0 0 24 24">
-            <g fill="#fff" stroke="#fff" strokeLinecap="square" strokeWidth={2}>
-              <circle cx={12} cy={12} fill="none" r={11} />
-              <path fill="none" d="M11.959 11v6" />
-              <circle cx={11.959} cy={7} r={1} stroke="none" />
-            </g>
-          </svg>
+  const roninFilters = () => {
+    return (
+      <>
+        <div className={styles.infoBox}>
+          <div>
+            <svg height={16} width={16} viewBox="0 0 24 24">
+              <g
+                fill="#fff"
+                stroke="#fff"
+                strokeLinecap="square"
+                strokeWidth={2}
+              >
+                <circle cx={12} cy={12} fill="none" r={11} />
+                <path fill="none" d="M11.959 11v6" />
+                <circle cx={11.959} cy={7} r={1} stroke="none" />
+              </g>
+            </svg>
+          </div>
+          <div>
+            <p>
+              This feature will show all the Axies in any given Ronin account.
+            </p>
+            <p>
+              Protip: Use it either for a quick peek on your own Axies or to
+              check out another player's Axies
+            </p>
+          </div>
         </div>
         <div>
-          <p>
-            This feature will show all the Axies in any given Ronin account.
-          </p>
-          <p>
-            Protip: Use it either for a quick peek on your own Axies or to check
-            out another player's Axies
-          </p>
+          <h4>RONIN ADDRESS</h4>
+          <input
+            className={styles.searchBar}
+            value={roninValue}
+            onChange={updateRonin}
+            type="search"
+            placeholder="ronin"
+          />
         </div>
-      </div>
-      <div>
-        <h4>RONIN ADDRESS</h4>
-        <input className={styles.searchBar} type="search" placeholder="ronin" />
-      </div>
-    </>
-  );
+      </>
+    );
+  };
 
   return (
     <div className={styles.section}>

@@ -46,6 +46,9 @@ export const FiltersProvider = ({ children }) => {
   const [minDefense, setMinDefense] = useState(0);
   const [minPurity, setMinPurity] = useState(0);
 
+  const [ronin, setRonin] = useState(null);
+  const [roninValue, setRoninValue] = useState("");
+
   const addOrRemoveClass = (className) => {
     if (classes.includes(className)) {
       setClasses(classes.filter((c) => c !== className));
@@ -151,7 +154,8 @@ export const FiltersProvider = ({ children }) => {
       speed,
       morale,
       breedCount,
-      genesIncluded.map((gene) => gene.partId)
+      genesIncluded.map((gene) => gene.partId),
+      ronin
     );
     if (error) {
       setError("No Axies Found");
@@ -193,7 +197,8 @@ export const FiltersProvider = ({ children }) => {
         speed,
         morale,
         breedCount,
-        genesIncluded.map((gene) => gene.partId)
+        genesIncluded.map((gene) => gene.partId),
+        ronin
       );
       if (error) {
         setError("No Axies Found");
@@ -217,6 +222,7 @@ export const FiltersProvider = ({ children }) => {
     sorting,
     speed,
     pagesAtOnce,
+    ronin,
   ]);
 
   useEffect(() => {
@@ -340,6 +346,10 @@ export const FiltersProvider = ({ children }) => {
         setMinDefense,
         minPurity,
         setMinPurity,
+        ronin,
+        setRonin,
+        roninValue,
+        setRoninValue,
       }}
     >
       {children}
