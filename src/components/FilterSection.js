@@ -659,6 +659,7 @@ const FilterSection = () => {
             onChange={updateRonin}
             type="search"
             placeholder="ronin"
+            maxLength={42}
           />
         </div>
       </>
