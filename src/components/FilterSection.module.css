@@ -211,3 +211,12 @@
   top: 2px;
   bottom: -7px;
 }
+
+.textBox {
+  width: 70px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid #888;
+  padding: 5px;
+  color: white;
+}

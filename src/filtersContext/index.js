@@ -24,6 +24,8 @@ export const FiltersProvider = ({ children }) => {
   const [minMystic, setMinMystic] = useState(0);
   const [maxBreed, setMaxBreed] = useState(7);
   const [minPureness, setMinPureness] = useState(1);
+  const [minPurity1, setMinPurity1] = useState(0);
+  const [maxPurity, setMaxPurity] = useState(100);
   const [genesIncluded, setGenesIncluded] = useState([]);
   // Axies Data State Management
   const [axies, setAxies] = useState([]);
@@ -155,7 +157,9 @@ export const FiltersProvider = ({ children }) => {
       morale,
       breedCount,
       genesIncluded.map((gene) => gene.partId),
-      ronin
+      ronin,
+      minPurity1,
+      maxPurity
     );
     if (error) {
       setError("No Axies Found");
@@ -198,7 +202,9 @@ export const FiltersProvider = ({ children }) => {
         morale,
         breedCount,
         genesIncluded.map((gene) => gene.partId),
-        ronin
+        ronin,
+        minPurity1,
+        maxPurity
       );
       if (error) {
         setError("No Axies Found");
@@ -223,6 +229,8 @@ export const FiltersProvider = ({ children }) => {
     speed,
     pagesAtOnce,
     ronin,
+    minPurity1,
+    maxPurity,
   ]);
 
   useEffect(() => {
@@ -350,6 +358,10 @@ export const FiltersProvider = ({ children }) => {
         setRonin,
         roninValue,
         setRoninValue,
+        minPurity1,
+        setMinPurity1,
+        maxPurity,
+        setMaxPurity,
       }}
     >
       {children}

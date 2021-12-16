@@ -117,7 +117,9 @@ export const fetchAxies = async (
   morale,
   breedCount,
   parts,
-  ronin
+  ronin,
+  minPurity,
+  maxPurity
 ) => {
   try {
     const { data } = await axios.post(
@@ -140,6 +142,7 @@ export const fetchAxies = async (
             morale: [morale, 61],
             breedCount: breedCount,
             parts,
+            purity: [minPurity, maxPurity],
           },
         },
         query: gqlQuery,

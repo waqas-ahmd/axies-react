@@ -59,6 +59,10 @@ const FilterSection = () => {
     setRonin,
     roninValue,
     setRoninValue,
+    minPurity1,
+    setMinPurity1,
+    maxPurity,
+    setMaxPurity,
   } = useContext(FiltersContext);
 
   const [filterSection, setFilterSection] = useState(0);
@@ -301,6 +305,38 @@ const FilterSection = () => {
               <div style={{ marginLeft: 5 }}>{pureness}</div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div>
+        <div style={frsbc}>
+          <h4>PURITY %</h4>
+        </div>
+        <div style={frsbc}>
+          <div>
+            <div style={{ fontSize: "small" }}>Min</div>
+            <input
+              value={minPurity1}
+              onChange={(e) => setMinPurity1(+e.target.value)}
+              className={styles.textBox}
+              style={{ width: 70 }}
+              type="number"
+              min={0}
+              max={maxPurity}
+            />
+          </div>
+          <div>
+            <div style={{ fontSize: "small" }}>Max</div>
+            <input
+              value={maxPurity}
+              onChange={(e) => setMaxPurity(+e.target.value)}
+              className={styles.textBox}
+              style={{ width: 70 }}
+              type="number"
+              min={minPurity1}
+              max={100}
+            />
+          </div>
         </div>
       </div>
 
