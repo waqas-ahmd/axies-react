@@ -80,7 +80,7 @@ const FilterSection = () => {
 
   const updateRonin = (e) => {
     setRoninValue(e.target.value);
-    if (e.target.value.length === 42) {
+    if (e.target.value.length > 0) {
       setRonin(e.target.value);
     } else {
       setRonin(null);
