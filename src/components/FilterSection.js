@@ -80,8 +80,10 @@ const FilterSection = () => {
 
   const updateRonin = (e) => {
     setRoninValue(e.target.value);
+    let prefix = e.target.value.slice(0, 2);
+    let ronin = prefix === "0x" ? e.target.value : `0x${e.target.value}`;
     if (e.target.value.length > 0) {
-      setRonin(e.target.value);
+      setRonin(ronin);
     } else {
       setRonin(null);
     }
